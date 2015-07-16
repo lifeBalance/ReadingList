@@ -1,0 +1,15 @@
+<%
+=begin %>
+    <div class="col-sm-4">
+      <h2>Genres</h2>
+      <ul class="list-unstyled">
+        <% @genres.each do |genre| %>
+          <li>
+            <%= link_to genre.name, books_path(filter: genre.name),
+              class: 'label label-primary' %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+<%
+=end %>

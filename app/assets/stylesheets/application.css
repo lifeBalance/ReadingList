@@ -10,7 +10,14 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ * The line below will require recursively all files inside 'app/assets/stylesheets': 
  *= require_tree .
+ *
+ * In the line below we are requiring Bootstrap inside the 'application.css' from 
+ * 'vendor/assets/stylesheets/bootstrap.css':
  *= require bootstrap
+ *
+ * The line below will require all styles we add in this stylesheet: 
  *= require_self
  */
+img { background-color: rgb(159, 159, 159);}
