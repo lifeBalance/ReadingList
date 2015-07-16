@@ -98,20 +98,11 @@
     <div class="col-sm-4">
       <h2>Genres</h2>
       <ul class="list-unstyled">
-        
-        <!-- Delete the list items below later, when enabling the commented ruby code -->
-        <li class="label label-primary">Tetazas</li>
-        <li class="label label-primary">Culazos</li>
-<%
-=begin %>
         <% @genres.each do |genre| %>
           <li>
-            <%= link_to genre.name, books_path(filter: genre.name),
-              class: 'label label-primary' %>
+            <%= link_to genre.name, books_path(filter: genre.name), class: 'label label-primary' %>
           </li>
         <% end %>
-<%
-=end %>
       </ul>
     </div>
 </div>

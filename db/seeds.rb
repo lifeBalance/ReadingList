@@ -1,4 +1,4 @@
-# Genre.destroy_all
+Genre.destroy_all
 # 
 # genre_attrs = [{
 #   name: 'Science Fiction'
@@ -11,6 +11,9 @@
 # }]
 
 # Genre.create!(genre_attrs)
+porn = Genre.create!(name: 'Porn')
+softcore = Genre.create!(name: 'Softcore')
+bukkake = Genre.create!(name: 'Bukkake')
 
 Book.destroy_all
 
@@ -22,6 +25,7 @@ book_attrs = [{
   rating: 5,
   finished_on: 10.days.ago,
   # genre: Genre.last
+  genres: [porn, bukkake]
 },
 {
   title: 'Hyperion',
@@ -31,6 +35,7 @@ book_attrs = [{
   rating: 4,
   finished_on: 1.days.ago,
   # genre: Genre.first
+  genres: [softcore]
 },
 {
   title: "Jony Ive: The Genius Behind Apple's Greatest Products",
@@ -40,6 +45,7 @@ book_attrs = [{
   rating: 2,
   finished_on: nil,
   # genre: Genre.last
+  genres: [porn]
 }]
 
 Book.create!(book_attrs);

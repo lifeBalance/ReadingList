@@ -1,4 +1,7 @@
 class Book < ActiveRecord::Base
+  has_many :book_genres
+  has_many :genres, :through => :book_genres
+  
   before_save :set_keywords
 
   # Scopes allow us to make queries which can be referenced as 
@@ -16,7 +19,7 @@ class Book < ActiveRecord::Base
   #   where('finished_on > ?', 2.days.ago)
   # end
 
-  scope :search, ->(keyword) { where('keywords LIKE ?', "%#{keyword.downcase}%") }
+  scope :search, ->(keyword) { where('keywords LIKE ?', "%#{keyword.downcase}%") if keyword.present?}
   # def self.search(keyword)
   #   if keyword.present?
   #     where(title: keyword)
@@ -24,6 +27,8 @@ class Book < ActiveRecord::Base
   #     all
   #   end
   # end
+
+  scope :filter, ->(name) { joins(:genres).where('genres.name = ?', name) if name.present? }
 
   def finished?
     finished_on.present? 
