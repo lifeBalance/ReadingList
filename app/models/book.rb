@@ -1,4 +1,6 @@
 class Book < ActiveRecord::Base
+  before_save :set_keywords
+
   # Scopes allow us to make queries which can be referenced as 
   # method calls on the model. They work like class methods:
   #     scope :finished, lambda { where('finished_on IS NOT NULL') }
@@ -14,7 +16,7 @@ class Book < ActiveRecord::Base
   #   where('finished_on > ?', 2.days.ago)
   # end
 
-  scope :search, ->(keyword) { where(title: keyword) if keyword.present? }
+  scope :search, ->(keyword) { where('keywords LIKE ?', "%#{keyword.downcase}%") }
   # def self.search(keyword)
   #   if keyword.present?
   #     where(title: keyword)
@@ -26,4 +28,9 @@ class Book < ActiveRecord::Base
   def finished?
     finished_on.present? 
   end
+
+  protected
+    def set_keywords
+      self.keywords = [title, author, description].map(&:downcase).join(' ')      
+    end
 end
